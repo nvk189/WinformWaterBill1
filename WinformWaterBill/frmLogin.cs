@@ -21,14 +21,21 @@ namespace WinformWaterBill
             InitializeComponent();
         }
 
-        private void btLogin_Click(object sender, EventArgs e)
+        public bool dangnnhap_test(string a,string b)
         {
-            try
+            if(a=="" || b == "")
+            {
+                return false;
+            }
+            else if(a=="" & b == "")
+            {
+                return false;
+            }
+            else
             {
                 Con.Open();
-                string Name = txtNamelogin.Text;
-                string Pass = txtPasslogin.Text;
-                string sql = "select*from AgentTb where AgName='" + Name + "' and AgPass='" + txtPasslogin.Text + "'";
+             
+                string sql = "select*from AgentTb where AgName='" + a + "' and AgPass='" + b + "'";
                 SqlCommand cmd = new SqlCommand(sql, Con);
                 SqlDataReader dta = cmd.ExecuteReader();
                 if (dta.Read() == true)
@@ -37,14 +44,24 @@ namespace WinformWaterBill
                     frmHome h = new frmHome();
                     h.Show();
                     this.Hide();
+                    return true;
                 }
                 else
                 {
                     MessageBox.Show("Sai mật khẩu hoặc tên đăng nhập");
+                    return false;
                 }
+                
+            }
+        }
+        private void btLogin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dangnnhap_test(txtNamelogin.Text, txtPasslogin.Text);
             }catch(Exception ex)
             {
-                MessageBox.Show("Sai mật khẩu hoặc tên đăng nhập");
+                MessageBox.Show("Lỗi đường truyền");
             }
         }
 

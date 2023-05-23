@@ -120,6 +120,39 @@ namespace Test
 
         }
 
+        [TestMethod]
+        public void login1()
+        {
+            frmLogin login = new frmLogin();
+            Assert.IsTrue(login.dangnnhap_test("","")); // nhập trống tất cả 
+
+        }
+
+
+        [TestMethod]
+        public void login2()
+        {
+            frmLogin login = new frmLogin();
+            Assert.IsTrue(login.dangnnhap_test("", "12345")); // nhập tìm kiếm 
+
+        }
+
+
+        [TestMethod]
+        public void login3()
+        {
+            frmLogin login = new frmLogin();
+            Assert.IsTrue(login.dangnnhap_test("long", "123456")); //  sai tài khoản hoặc mật khẩu
+
+        }
+
+        [TestMethod]
+        public void login4()
+        {
+            frmLogin login = new frmLogin();
+            Assert.IsTrue(login.dangnnhap_test("NguyenVanKhoa", "1234")); //  sai tài khoản hoặc mật khẩu
+
+        }
 
     }
 }
